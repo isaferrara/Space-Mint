@@ -18,10 +18,12 @@ class Mint{
     this.height=50
     this.velX = 0
     this.velY = 0
-    this.jumpStrength = 12
+    this.jumpStrength = 15
     this.jumps = 0
     this.jumping = false
+    this.grounded = false
     }
+
     draw(){
         if (this.x < 0) this.x = $canvas.width
         if (this.x > $canvas.width) this.x = 0
@@ -30,7 +32,9 @@ class Mint{
          this.jumps = 0
          this.jumping = false
         }
-        ctx.strokeRect(this.x, this.y, this.width, this.height)   
+        ctx.fillRect(this.x, this.y, this.width, this.height) 
+        ctx.clearRect(this.x+2.5, this.y+3, this.width-5, this.height-5);
+        ctx.fillStyle="#FF0000"
     }
     changePos() {
         this.velY += gravity
@@ -40,56 +44,94 @@ class Mint{
       }
 
       jump() {
-        this.jumping = false
-        if (this.jumps >= 2) {
-          this.jumping = true
-        }
         if (!this.jumping) {
-          this.jumps++
-          this.velY = -this.jumpStrength
+            this.velY = -this.jumpStrength
+            this.jumping = true
         }
       }
-      isTouchingUp(boxes) {
-        return (
-          this.y < boxes.y + boxes.height &&
-          this.x + this.width > boxes.x &&
-          this.x < boxes.x + boxes.width 
-        )
-      }
-      isTouchingSides(boxes) {
-        return (
-          this.x + this.width > boxes.x &&
-          this.x < boxes.x + boxes.width 
-        )
-      }
-      isTouchingDown(boxes) {
-          this.y + this.height > boxes.y
-      }
+    //   isTouchingUp(boxes) {
+    //     return (
+    //         this.x < boxes.x + boxes.width &&
+    //         this.x + this.width > boxes.x &&
+    //         this.y < boxes.y + boxes.height &&
+    //         this.y + this.height > boxes.y
+    //     )
+    //   }
+    //   isTouchingSides(boxes) {
+    //     return (
+    //         this.x < boxes.x + boxes.width &&
+    //         this.x + this.width > boxes.x &&
+    //         this.y < boxes.y + boxes.height &&
+    //         this.y + this.height > boxes.y
+    //     )
+    //   }
+    //   isTouchingDown(boxes) {
+    //     this.x < boxes.x + boxes.width &&
+    //     this.x + this.width > boxes.x &&
+    //     this.y < boxes.y + boxes.height &&
+    //     this.y + this.height > boxes.y
+    //   }
 }
 const mint1= new Mint(10,$canvas.height-50)
 
 
 class Box{
-    constructor(x, altura){
+    constructor(x, altura, y){
     this.x=x
-    this.y=0
+    this.y=y
     this.altura=altura
-    this.width=60
-    this.height=60
+    this.width=90
+    this.height=90
     this.velY = 0
+    this.velX=0;
+    this.grounded = false
+
     }
     draw(){
+        
         this.velY += gravity
         this.y += this.velY
         if (this.y> $canvas.height-this.altura) this.y= $canvas.height-this.altura
-        ctx.strokeRect(this.x, this.y, this.width, this.height)
+        ctx.fillRect(this.x, this.y, this.width, this.height)
+        ctx.fillStyle="black"
+        
     }
-    boxExists(boxes){
+    isTouching(boxes){
         return (
+            this.x < boxes.x + boxes.width &&
+            this.x + this.width > boxes.x &&
             this.y < boxes.y + boxes.height &&
             this.y + this.height > boxes.y
           )
     }
     }
 
-
+    class Board {
+        constructor(x, y) {
+            this.x = 0
+            this.y = 0
+            this.width = $canvas.width
+            this.height = $canvas.height
+            this.img1 = new Image()
+            this.img1.src = '/img/background-2.jpg'
+            this.img2 = new Image()
+            this.img2.src = '/img/space_background_for_infinite_scroll_example-300x300.png'
+            // this.img.onload = () => {
+            //     this.draw()
+            // }
+        }
+        draw() {
+            this.y--
+            if (this.y < -$canvas.height) this.y = 0
+            if (frames < 3000) {
+                ctx.drawImage(this.img1, this.x, this.y, this.width, this.height)
+                ctx.drawImage(this.img1, this.x, this.y + $canvas.height, this.width, this.height)
+                console.log(frames)
+            }
+            else if(frames >3000) {
+                ctx.drawImage(this.img2, this.x, this.y, this.width, this.height)
+                ctx.drawImage(this.img2, this.x, this.y + $canvas.height, this.width, this.height)
+            }
+        }
+    }
+    const background = new Board()
