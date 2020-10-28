@@ -1,15 +1,18 @@
 function update(){
     frames++
     clearBox()
-    genBox()
     checkKeys()
     mint1.changePos() 
+    genBox()
     clearCanvas()
     background.draw()
+    touchLine()
     // checkCollitionsMint()
     // checkCollitionsBox()
     drawBox()
     mint1.draw()
+    line.draw()
+
     bounds()
 }
 
@@ -68,51 +71,54 @@ function gameOver(){
     ctx.fillStyle = "black"
     ctx.fillText(`Game Over`, 150, $canvas.height/2)
 }
-let altura=0;
-  function genBox() {
-    if (frames % 200 == 0) {
-      const min = 100
-      const max = $canvas.width - 100
-      let randomX = Math.floor(Math.random() * (max-min ))
-      let box1=new Box(randomX,altura, 0) 
-      boxies.push(box1)
-      box1.grounded = false
-      boxies.forEach(box => {
-        var direction = collisionCheck(box1, box)
-
-       if (direction == "bottom") {
-            console.log('holiiiii')
-            box1.velX = 0
-            box1.velY=0
-            altura+= box.height
-            console.log(altura)
-        } else if (direction == "top") {
-          box1.velY *= -1
-        }
-      })
-    
-      if (mint1.grounded) {
-          mint1.velY = 0
-      }
-    }
-  }
-
-// function genBox() {
-//     if (frames % 300 == 0) {
-//     let randomX = Math.floor(Math.random() * (600 ))
-//     let box1=new Box(randomX,this.altura) 
-//     boxies.unshift(box1)
-//     boxies.forEach(obs => {
-//         if (box1.isTouching(obs)) {
-//                 console.log(boxies)
-//                 console.log('esta tocando')
-//                 this.altura=obs.y+obs.height
-//             }
-//         })
-
+// let altura=0;
+//   function genBox() {
+//     if (frames % 100 == 0) {
+//       const min = 100
+//       const max = $canvas.width - 100
+//       let randomX = Math.floor(Math.random() * (max-min ))
+//       let box1=new Box(randomX,altura, 0) 
+//       boxies.push(box1)
+//       box1.grounded = false
+//       boxies.forEach(box => {
+//         var direction = collisionCheck(box1, box)
+//        if (direction == "bottom") {
+//             console.log('holiiiii')
+//             box1.velX = 0
+//             box1.velY=0
+//             altura+= box.y+ box1.height +60
+//             console.log(box.y)
+//         } else if (direction == "top") {
+//           box1.velY *= -1
+//         }
+//       })
 //     }
-// }
+//   }
 
+function genBox() {
+    if (frames % 200 == 0) {
+    let randomX = Math.floor(Math.random() * (600))
+    let box1=new Box(randomX,this.altura,this.y) 
+    boxies.push(box1)
+    boxies.forEach(obs => {
+        console.log(obs)
+        console.log('un chorrito se hacia grandote y se hacia chiquito')
+        if(box1.x < obs.x + obs.width &&
+            box1.x + obs.width > obs.x){
+            this.y=0
+            this.altura+= obs.y+box1.height
+            console.log(this.altura)
+        } else{
+            this.altura+= box1.height
+        }
+        // if (box1.isTouching(obs)) {
+        //         console.log(boxies)
+        //         console.log('esta tocando')
+        //         this.altura=obs.y+obs.height
+        })
+
+    }
+}
 
 
     function bounds() {
@@ -121,11 +127,14 @@ let altura=0;
           var direction = collisionCheck(mint1, box)
           if (direction == "left" || direction == "right") {
             mint1.velX = 0
+            mint1.jumping=false
           } else if (direction == "bottom") {
             mint1.jumping = false
             mint1.grounded = true
           } else if (direction == "top") {
-            gameOver()
+            // gameOver()
+         
+
             mint1.velY *= -1
           }
         })
@@ -163,9 +172,21 @@ if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
         } else {
         collisionDirection = "bottom"
         char.y -= offsetY
-
+        console.log('adfadgsfdgsfgsg')
+        console.log(char.y)
+        console.log(offsetY)
+        console.log()
         }
     }
     }
     return collisionDirection
+}
+
+
+function touchLine(){
+    if (mint1.y >=line.y)
+    return gameOver()
+  }function touchLine(){
+  if (mint1.y >=line.y)
+  return gameOver()
 }

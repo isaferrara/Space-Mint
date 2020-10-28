@@ -14,11 +14,11 @@ class Mint{
     constructor(x,y){
     this.x=x
     this.y=y
-    this.width=30
-    this.height=50
+    this.width=40
+    this.height=60
     this.velX = 0
     this.velY = 0
-    this.jumpStrength = 15
+    this.jumpStrength = 10
     this.jumps = 0
     this.jumping = false
     this.grounded = false
@@ -65,12 +65,12 @@ class Mint{
     //         this.y + this.height > boxes.y
     //     )
     //   }
-    //   isTouchingDown(boxes) {
+    // //   isTouchingDown(boxes) {
     //     this.x < boxes.x + boxes.width &&
     //     this.x + this.width > boxes.x &&
     //     this.y < boxes.y + boxes.height &&
     //     this.y + this.height > boxes.y
-    //   }
+    // //   }
 }
 const mint1= new Mint(10,$canvas.height-50)
 
@@ -78,32 +78,30 @@ const mint1= new Mint(10,$canvas.height-50)
 class Box{
     constructor(x, altura, y){
     this.x=x
-    this.y=y
-    this.altura=altura
-    this.width=90
-    this.height=90
+    this.y=Y
+    this.altura=50
+    this.width=100
+    this.height=100
     this.velY = 0
     this.velX=0;
     this.grounded = false
 
     }
     draw(){
-        
         this.velY += gravity
         this.y += this.velY
+        if(frames%10==0){this.altura-=3}
         if (this.y> $canvas.height-this.altura) this.y= $canvas.height-this.altura
         ctx.fillRect(this.x, this.y, this.width, this.height)
         ctx.fillStyle="black"
         
     }
-    isTouching(boxes){
-        return (
-            this.x < boxes.x + boxes.width &&
-            this.x + this.width > boxes.x &&
-            this.y < boxes.y + boxes.height &&
-            this.y + this.height > boxes.y
-          )
-    }
+    // isTouching(boxes){
+    //     return (
+    //         this.x < boxes.x + boxes.width &&
+    //         this.x + this.width > boxes.x 
+    //       )
+    // }
     }
 
     class Board {
@@ -135,3 +133,22 @@ class Box{
         }
     }
     const background = new Board()
+
+    class DeadLine {
+        constructor() {
+            this.x = 0
+            this.y = $canvas.height+10
+            this.width =$canvas.width
+            this.height =3
+            this.velX = 0
+            this.velY = 0
+        }
+        draw() {
+            ctx.fillRect(this.x, this.y, this.width, this.height)
+            ctx.fillStyle = "red"
+            if(frames % 1000==0){
+                this.y--
+            }
+        }
+    }
+    const line = new DeadLine()
