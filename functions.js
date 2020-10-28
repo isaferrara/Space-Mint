@@ -3,17 +3,17 @@ function update(){
     clearBox()
     checkKeys()
     mint1.changePos() 
+    clearObstacles()
     genBox()
     clearCanvas()
     background.draw()
-    touchLine()
-    // checkCollitionsMint()
-    // checkCollitionsBox()
     drawBox()
-    mint1.draw()
     line.draw()
-
+    mint1.draw()
     bounds()
+    printScore()
+    touchLine()
+ 
 }
 
 function startGame(){
@@ -24,15 +24,26 @@ function resetGame(){
     console.log('reset game')
     ctx.clearRect(0, 0, $canvas.width, $canvas.height) 
     clearInterval(gameInterval)
-    gameInterval = 0
+    gameInterval = null
     boxies=[]
     frames=0;
     altura=0;
+    score=0;
+    line.y=$canvas.height+10;
+    mint1.x=10
+    mint1.y=$canvas.height
 
 }
+function printScore() {
+    if (frames % 200 === 0) score++
+    ctx.font = "20px Sans-serif"
+    ctx.fillStyle = "black"
+    ctx.fillText(`Score: ${score}`, $canvas.width - 100, 30)
+  }
 
 $startButton.onclick=startGame
 $resetButton.onclick=resetGame
+$pauseBtn.onclick = pauseGame
 
 function clearCanvas() {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height)
@@ -64,13 +75,33 @@ function drawBox() {
   }
   
 
+
 function gameOver(){
+    ctx.fillText(`Game Over`, $canvas.width/2-50, $canvas.height/2)
     clearInterval(gameInterval)
     gameInterval = null
-    ctx.font = "50px Sans-serif"
     ctx.fillStyle = "black"
-    ctx.fillText(`Game Over`, 150, $canvas.height/2)
+    ctx.font = "500px Arial"
+   
 }
+  
+
+function winning(){
+    ctx.fillText(`Congrats, you won!!`, 150, $canvas.height/2)
+    clearInterval(gameInterval)
+    gameInterval = null
+    ctx.font = '500px Sans-serif'
+    ctx.fillStyle = "black"
+   
+}
+
+function pauseGame() {
+    clearInterval(gameInterval)
+    gameInterval = null
+  }
+
+
+
 // let altura=0;
 //   function genBox() {
 //     if (frames % 100 == 0) {
@@ -86,30 +117,59 @@ function gameOver(){
 //             console.log('holiiiii')
 //             box1.velX = 0
 //             box1.velY=0
-//             altura+= box.y+ box1.height +60
+//             altura +=60
 //             console.log(box.y)
-//         } else if (direction == "top") {
-//           box1.velY *= -1
 //         }
 //       })
 //     }
 //   }
 
+
+let altura=0;
 function genBox() {
-    if (frames % 200 == 0) {
-    let randomX = Math.floor(Math.random() * (600))
-    let box1=new Box(randomX,this.altura,this.y) 
+    if (frames % 100 == 0) {
+    const maxX= $canvas.width-30
+    const minX=30
+    let randomW = Math.floor(Math.random() * (150))
+    if(randomW<70){randomW=80}
+    let randomH=randomW    
+    let randomX = Math.floor(Math.random() * (maxX-minX))
+    let box1=new Box(randomX,altura,0,randomW,randomH ) 
     boxies.push(box1)
+    // console.log('antees de entrar')
     boxies.forEach(obs => {
-        console.log(obs)
-        console.log('un chorrito se hacia grandote y se hacia chiquito')
-        if(box1.x < obs.x + obs.width &&
+         if(box1.x < obs.x + obs.width &&
             box1.x + obs.width > obs.x){
-            this.y=0
-            this.altura+= obs.y+box1.height
-            console.log(this.altura)
+                // console.log(box1.x < obs.x + obs.width &&
+                //  box1.x + obs.width > obs.x)
+                //  console.log('boxies lenght')
+                //  console.log(boxies.length)
+                //  console.log('box1')
+                // console.log(box1)
+                // console.log('obs:')
+                // console.log(obs)
+                // console.log('box1.altura111')
+                // console.log(box1.altura)
+                altura= obs.height
+                // console.log('box1.altura222')
+                // console.log(box1.altura)
+                // console.log('boxies')
+                // console.log(boxies)
+            return 
         } else{
-            this.altura+= box1.height
+            box1.velx=0
+            box1.velY=0
+            // console.log('box1.altur11')
+            // console.log(box1.altura)
+            box1.altura+= 60
+            // console.log('else') 
+            // console.log('box1')
+            // console.log(box1)
+            // console.log('obs:')
+            // console.log(obs)
+            // console.log('box1.altura')
+            // console.log(box1.altura)
+            return 
         }
         // if (box1.isTouching(obs)) {
         //         console.log(boxies)
@@ -132,10 +192,8 @@ function genBox() {
             mint1.jumping = false
             mint1.grounded = true
           } else if (direction == "top") {
-            // gameOver()
-         
-
             mint1.velY *= -1
+            // gameOver()
           }
         })
       
@@ -151,12 +209,13 @@ function collisionCheck(char, plat) {
 
   var halfWidths = char.width / 2 + plat.width / 2
   var halfHeights = char.height / 2 + plat.height / 2
-
+  var halfWidthstop = char.width  + plat.width
   var collisionDirection = null
 
 if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
     var offsetX = halfWidths - Math.abs(vectorX)
     var offsetY = halfHeights - Math.abs(vectorY)
+
     if (offsetX < offsetY) {
     if (vectorX > 0) {
         collisionDirection = "left"
@@ -172,10 +231,6 @@ if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
         } else {
         collisionDirection = "bottom"
         char.y -= offsetY
-        console.log('adfadgsfdgsfgsg')
-        console.log(char.y)
-        console.log(offsetY)
-        console.log()
         }
     }
     }
@@ -184,9 +239,18 @@ if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
 
 
 function touchLine(){
-    if (mint1.y >=line.y)
-    return gameOver()
-  }function touchLine(){
-  if (mint1.y >=line.y)
-  return gameOver()
+    if (mint1.y+40>=line.y){
+        console.log('linea rojaaaaaaaa')
+        console.log(mint1.y)
+        console.log(line.y)
+         gameOver()
+         line.y=$canvas.height+200
+         return 
+
+    }
 }
+
+
+function clearObstacles() {
+    boxies = [...boxies].filter(o => o.y <= o.height+400)
+  }
