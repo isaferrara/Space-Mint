@@ -1,21 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <link rel="stylesheet" href="style.css">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MintSpace project</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap');
+  </style>
+
 </head>
+
 <body>
-    <p>Space Mint</p>
-    <canvas width="600" height="500"></canvas>
-    <button id='start'>start</button>
-    <button id='reset'>Reset Game</button>
-    <button id='pause'>pause</button>
- 
-  <!-- <script src="isa.js"></script> -->
+
+
+  <section id="gamePres">
+    <div class="gameArena">
+      <div class="titles">
+
+        <h1>SpaceMint</h1>
+
+        <h2>The mint to infinite...and beyond!</h2>
+        <!-- <img id="logoUp" src="./img/background-2.jpg" alt=""> -->
+
+
+      </div>
+      <canvas width="600" height="500"></canvas>
+
+      <div class="gameRules">
+        <div id="btnBar">
+          <button class="btnStyle btn1" id='start'>Start</button>
+          <button class="btnStyle btn3" id='pause'>Pause</button>
+          <button class="btnStyle btn2" id='reset'>Reset Game</button>
+
+
+        </div>
+        <h2>
+          Mission objective
+
+        </h2>
+
+        <p id="gameHistory">
+          
+          Use the left and right keys to move, up to jump.
+          Jump on the alien blocks to go up into space, but be careful! Don't let them hit you on the head.
+          Hurry up before the line comes to you!
+
+          The further you advance, the less space you will have to jump.
+        </p>
+      </div>
+
+      <!-- Have fun taking mint to the space. -->
+    </div>
+
+    <!-- <script src="isa.js"></script> -->
     <script src="classes.js"></script>
     <script src="controls.js"></script>
     <script src="functions.js"></script>
+
+    <div class="test"></div>
+
+
+  </section>
+
 </body>
+
 </html>

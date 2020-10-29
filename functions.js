@@ -1,5 +1,6 @@
 function update(){
     frames++
+    console.log(frames)
     clearBox()
     checkKeys()
     mint1.changePos() 
@@ -13,7 +14,7 @@ function update(){
     bounds()
     printScore()
     touchLine()
- 
+
 }
 
 function startGame(){
@@ -21,7 +22,6 @@ function startGame(){
     gameInterval=setInterval(update,10)
 }
 function resetGame(){
-    console.log('reset game')
     ctx.clearRect(0, 0, $canvas.width, $canvas.height) 
     clearInterval(gameInterval)
     gameInterval = null
@@ -29,9 +29,15 @@ function resetGame(){
     frames=0;
     altura=0;
     score=0;
-    line.y=$canvas.height+10;
-    mint1.x=10
-    mint1.y=$canvas.height
+    mint1.x=5
+    mint1.y=550
+    background.y=-1200
+    line.y=513
+    console.log('reset game')
+    mint1.x=5
+    mint1.y=550
+    startGame()
+
 
 }
 function printScore() {
@@ -39,6 +45,21 @@ function printScore() {
     ctx.font = "20px Sans-serif"
     ctx.fillStyle = "black"
     ctx.fillText(`Score: ${score}`, $canvas.width - 100, 30)
+    if(frames<=5000) {
+        ctx.font = "20px Sans-serif"
+        ctx.fillStyle = "black"
+        ctx.fillText('Level 1: earth', 10, 30 )
+    }
+    if(frames>=5000&& frames<=10000) {
+        ctx.font = "20px Sans-serif"
+        ctx.fillStyle = "black"
+        ctx.fillText('Level 2: sky', 10, 30 )
+    }
+    if(frames>=10000&& frames<=15000) {
+        ctx.font = "20px Sans-serif"
+        ctx.fillStyle = "black"
+        ctx.fillText('Level 2: sky', 10, 30 )
+    }
   }
 
 $startButton.onclick=startGame
@@ -49,22 +70,6 @@ function clearCanvas() {
     ctx.clearRect(0, 0, $canvas.width, $canvas.height)
     
   }
-
-// function collisionCheck() {
-//     boxies.forEach(obs => {
-//       if (mint1.isTouchingUp(obs)) {
-//         console.log('como estas')
-//         mint1.y=$canvas.height-altura
-//         this.jumping = false
-//       }
-//       if (mint1.isTouchingSides(obs)) {
-//             console.log('pasito a pasito')
-//             mint1.y=$canvas.height-obs.height-mint1.height 
-//       }
-//       if (mint1.isTouchingDown(obs)) {
-//         gameOver()  }
-//       })
-// }
 
 function drawBox() {
     boxies.forEach(obs => obs.draw())
@@ -77,22 +82,19 @@ function drawBox() {
 
 
 function gameOver(){
-    ctx.fillText(`Game Over`, $canvas.width/2-50, $canvas.height/2)
+    ctx.drawImage(gameOverImg, 00, 0, 600, 500)
     clearInterval(gameInterval)
     gameInterval = null
-    ctx.fillStyle = "black"
-    ctx.font = "500px Arial"
-   
+    // ctx.fillStyle = "black"
+    // ctx.font = "500px Arial"
 }
   
 
 function winning(){
-    ctx.fillText(`Congrats, you won!!`, 150, $canvas.height/2)
-    clearInterval(gameInterval)
-    gameInterval = null
-    ctx.font = '500px Sans-serif'
-    ctx.fillStyle = "black"
-   
+        ctx.drawImage(youWon, 00, 0, 600, 500)
+        clearInterval(gameInterval)
+        gameInterval = null
+
 }
 
 function pauseGame() {
@@ -136,45 +138,20 @@ function genBox() {
     let randomX = Math.floor(Math.random() * (maxX-minX))
     let box1=new Box(randomX,altura,0,randomW,randomH ) 
     boxies.push(box1)
-    // console.log('antees de entrar')
     boxies.forEach(obs => {
          if(box1.x < obs.x + obs.width &&
             box1.x + obs.width > obs.x){
-                // console.log(box1.x < obs.x + obs.width &&
-                //  box1.x + obs.width > obs.x)
-                //  console.log('boxies lenght')
-                //  console.log(boxies.length)
-                //  console.log('box1')
-                // console.log(box1)
-                // console.log('obs:')
-                // console.log(obs)
-                // console.log('box1.altura111')
-                // console.log(box1.altura)
                 altura= obs.height
-                // console.log('box1.altura222')
-                // console.log(box1.altura)
-                // console.log('boxies')
-                // console.log(boxies)
+
             return 
         } else{
             box1.velx=0
             box1.velY=0
-            // console.log('box1.altur11')
-            // console.log(box1.altura)
             box1.altura+= 60
-            // console.log('else') 
-            // console.log('box1')
-            // console.log(box1)
-            // console.log('obs:')
-            // console.log(obs)
-            // console.log('box1.altura')
-            // console.log(box1.altura)
+
             return 
         }
-        // if (box1.isTouching(obs)) {
-        //         console.log(boxies)
-        //         console.log('esta tocando')
-        //         this.altura=obs.y+obs.height
+
         })
 
     }
@@ -192,8 +169,8 @@ function genBox() {
             mint1.jumping = false
             mint1.grounded = true
           } else if (direction == "top") {
+            gameOver()
             mint1.velY *= -1
-            // gameOver()
           }
         })
       
@@ -239,12 +216,11 @@ if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
 
 
 function touchLine(){
-    if (mint1.y+40>=line.y){
+    if (mint1.y+mint1.height>=line.y){
         console.log('linea rojaaaaaaaa')
         console.log(mint1.y)
         console.log(line.y)
          gameOver()
-         line.y=$canvas.height+200
          return 
 
     }
