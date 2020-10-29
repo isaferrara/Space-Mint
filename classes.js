@@ -32,7 +32,7 @@ class Board {
         //     this.draw()
         // }
         this.img1.onload = () => {
-            this.draw()
+            this.draw()}
         
     }
     draw() {
