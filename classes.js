@@ -33,8 +33,8 @@ class Board {
         // }
         this.img1.onload = () => {
             this.draw()}
-        
     }
+
     draw() {
 
         if (mint1.jumping && this.y < 0) {
@@ -64,8 +64,6 @@ class Board {
 const background = new Board(-1200)
 
 
-
-
 class Mint{
     constructor(x,y){
     this.x=x
@@ -80,11 +78,12 @@ class Mint{
     this.grounded = false
     this.img1 = new Image()
     this.img1.src = '/img/simsv.svg'
-    this.imgLeft = new Image()
+    // this.imgLeft = new Image()
     // this.imgLeft.src = '/img/izq.png'
     // this.imgRight = new Image()
     // this.imgRight.src = '/img/der.png'
-
+        this.img1.onload = () => {
+            this.draw()}
     }
 
     draw(){

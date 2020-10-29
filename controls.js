@@ -1,7 +1,7 @@
 
   function checkKeys() {
     if (keys["ArrowUp"]) {
-      mint1.img1.src="/img/simsv.svg"  
+      // mint1.img1.src="/img/simsv.svg"  
       mint1.jump()
     }
     if (keys["ArrowLeft"]) {
