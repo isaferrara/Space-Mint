@@ -15,8 +15,7 @@ let gameOverImg = document.createElement("img")
 gameOverImg.src = "/img/game-over.png"
 let youWon = document.createElement("img")
 youWon.src = "/img/wou-win.png"
-let pause = document.createElement("img")
-youWon.src = "/img/wou-win.png"
+
 
 class Board {
     constructor(y) {
@@ -84,6 +83,7 @@ class Mint{
     // this.imgRight.src = '/img/der.png'
         this.img1.onload = () => {
             this.draw()}
+
     }
 
     draw(){
@@ -110,10 +110,43 @@ class Mint{
             this.jumping = true
         }
       }
+      
 
 }
 const mint1= new Mint(10,540)
 
+// class Lifies{
+//     constructor(lifes) {
+//         this.x = 30
+//         this.y = 50
+//         this.width =100
+//         this.height =50
+//         this.lifes=lifes
+//         this.lifeF = new Image()
+//         lifeF.src = '/img/ons-star.png'
+//         this.life2 = new Image()
+//         life2.src = "/img/two-stars.png"
+//         this.life3 = new Image()
+//         life3.src = "/img/ tres-estrellas.png"
+//         this.img1 = new Image()
+//         this.img1.src = '/img/simsv.svg'
+//      }
+//     draw(){
+//             ctx.drawImage(this.life3, this.x, this.y, this.width, this.height)
+//             console.log(this.lifes)
+//          if (this.lifes===2){
+//             ctx.drawImage(this.life2,this.x, this.y, this.width, this.height)
+//             console.log(this.lifes)
+//         }
+//         else if (this.lifes===1){
+//             ctx.drawImage(this.lifef, this.x, this.y, this.width, this.height)
+//             console.log(this.lifes)
+//         }
+
+//     }
+// }
+
+// const life1= new Lifies(3)
 
 class Box{
     constructor(x, altura, y, width, height){
@@ -160,4 +193,8 @@ class Box{
             ctx.fillStyle = "red"
         }
     }
+
     const line = new DeadLine()
+
+
+

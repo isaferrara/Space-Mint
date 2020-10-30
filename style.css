@@ -1,224 +1,263 @@
 
+body {
+  font-size: 16px;
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+  height: 1000px;
 
-  body {
-    font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+}
+
+canvas {
+  border: 2px solid rgb(88, 67,146);
+  border-radius: 1em;
+
+}
+
+h1 {
+  display: flex;
+  justify-content: center;
+  font-size: 2em;
+  color:rgb(101, 224, 221);
+  font-weight: bold;
+  
+}
+
+#logoUp{
+  width: 200px;
+  height: 100px;
+}
+
+#gamePres {
+  margin: 1vh;
+  /* background-image: url("./img/spacemitnbackgroundlow.png");
+  width: 1440px;
+  height: 900px; */
+}
+
+.gameArena {
+  width: 650px;
+}
+
+.backblock{
+   background-image: url('./img/brick.png');
+    background-repeat: no-repeat;
+    height:50vh;
+  
+}
+
+/* media queries,responsive design */
+@media(min-width:375px) {
+  #gamePres {
+    margin: 1vh;
+    background-image: url('./img/spacemintbcground.png');
+    background-repeat: no-repeat;
+    width: 375vh;
+    height: 800vh;
+    display:flex;
+    justify-content: center;
+    height: 1000px;
+  }
+  
+  
+
+  .titles {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  h2 {
     display: flex;
     justify-content: center;
-    margin: 0;
-    padding: 0;
-  
+    font-size: 1em;
+    margin-left: 5vh;
+    padding-left: 1vh;
+    color: rgb(101, 224, 221);
   }
-  
-  
-  
+
   canvas {
-    border: 3px solid white;
-    border-radius: 10;
-  
+    margin: 1vh;
+
   }
+
+  #btnBar {
+    display: flex;
+    flex-direction: column;
+    padding: 0 0 0 10vh;
+    margin-left: 6vh;
+    width: 300px;
+  }
+  
+ 
+
+  #gameHistory {
+
+    padding: 0 3vh 3vh;
+    margin: 0 3vh 3vh;
+    text-align: left;
+    font-size: 1.3em;
+    color: rgb(55, 71,78);
+    /* background-image: url('./img/brick.png');
+    background-repeat: no-repeat;
+    height:50vh; */
+    
+  }
+}
+
+@media(min-width:768px) {
   
   h1 {
     display: flex;
     justify-content: center;
-    font-size: 2em;
-    color: white;
+    font-size: 2.5em;
   }
-  
-  #logoUp{
-    width: 200px;
-    height: 100px;
-  }
-  
-  #gamePres {
+
+
+
+  h2 {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 1.5em;
     margin: 1vh;
-    /* background-image: url("./img/spacemitnbackgroundlow.png");
-    width: 1440px;
-    height: 900px; */
+    padding: 0 1vh;
+
   }
-  
-  .gameArena {
-    width: 650px;
-  }
-  
-  /* media queries,responsive design */
-  @media(min-width:375px) {
-    #gamePres {
-      margin: 1vh;
-      background-image: url("./img/spacemitnbackgroundfinal.png");
-      background-repeat: no-repeat;
-      width: 375;
-      height: 300;
-      display: flex;
-      justify-content: center;
-      
-    }
-  
-    .titles {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-    }
-  
-    h2 {
-      display: flex;
-      justify-content: center;
-      font-size: 1em;
-      margin-left: 5vh;
-      padding-left: 1vh;
-      color: white;
-    }
-  
-    canvas {
-      margin: 1vh;
-  
-    }
-  
-    #btnBar {
-      display: flex;
-      flex-direction: column;
-      padding: 0 0 0 10vh;
-      margin-left: 6vh;
-      width: 300px;
-    }
-  
-   
-  
-    #gameHistory {
-  
-      padding: 0 3vh 3vh;
-      margin: 0 3vh 3vh;
-      text-align: left;
-      font-size: 1.3em;
-      color: white;
-    }
-  }
-  
-  @media(min-width:768px) {
-    h1 {
-      display: flex;
-      justify-content: center;
-      font-size: 2em;
-    }
-  
-  
-  
-    h2 {
-      display: flex;
-      justify-content: flex-start;
-      font-size: 1.5em;
-      margin: 1vh;
-      padding: 0 1vh;
-  
-    }
-  
-    #btnBar {
-      display: flex;
-      flex-direction: row;
-      padding: 1vh ;
-      justify-content: space-between;
-      margin-left:11vh ;
-      
-    }
-  
-    #gamePres {
-      margin: 1vh;
-      background-image: url("./img/spacemitnbackgroundfinal.png");
-      background-repeat: no-repeat;
-      width: 1440px;
-      height: 1200px;
-      display: flex;
-      justify-content: center;
-      
-    }
-  
-    #gameHistory {
-      display: flex;
-      justify-content: center;
-      padding: 0 1vh;
-      margin: 0 1vh 3vh;
-      text-align: left;
-    }
-    .titles {
-      display: flex;
-      justify-content: center;
-    }
-    
-    
-  }
-  
-  
-  /* buttons config */
-  
+
   #btnBar {
     display: flex;
-    /* change here where to display buttons */
-    justify-content: space-around;
-    margin-top: 2vh;
+    flex-direction: row;
+    padding: 1vh ;
+    justify-content: space-between;
+    margin-left:82h;
     
+  }
+
+  #gamePres {
+    margin: 1vh;
+    background-image: url("./img/spacemintbcground.png");
+    background-repeat: no-repeat;
+    width: 1440px;
+    height: 1200px;
+    display: flex;
+    justify-content: center;
+
     
+  }
+
+  
+  #gameHistory {
+    display: flex;
+    justify-content: center;
+    padding: 5vh 1vh;
+    margin: 0 1vh 3vh;
+    text-align: left;
+    color: rgb(55, 71,78);
+    
+
+  }
+ 
+  
+  .titles {
+    display: flex;
+    justify-content: center;
+  }
+  .gameRules{
+    width: 600px;
+    padding-left: 1vh;
+  
     
   }
   
-  .btnStyle {
-    /* if move to space between remove margin , color rgb(59, 59, 59)*/
-    background:rgb(101, 224, 221);
-    border: 3px solid white;
-    font-family: 'Roboto', sans-serif;
-    text-transform: uppercase;
-    padding: 1vh;
-    /* to make larger btns */
-    min-width: 12vh;
-    margin: .5vh;
-    cursor: pointer;
-    /* color: white; */
-    border-radius: 4px;
-    transition: color 0.4s linear;
-    position: sticky;
   
-  }
+}
+
+
+/* buttons config */
+
+#btnBar {
+  display: flex;
+  /* change here where to display buttons */
+  justify-content: space-between;
+  margin-top: 2vh;
   
-  /* rgb(101, 224, 221),  #000 */
   
-  .btnStyle:hover {
-    color: #fff;
-    /* you can add image here with -content- */
-  }
   
-  .btnStyle::before {
-    content: "";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: #000;
-    z-index: -1;
-    transition: transform 0.5s;
-    transform-origin: 0 0;
-    transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
-  
-  }
-  
-  .btn1::before {
-    transform: scaleY(0);
-  }
-  
-  .btn2::before {
-    transform: scaleY(0);
-  }
-  
-  .btn1:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .btn2:hover::before {
-    transform: scaleX(1);
-  }
-  
-  .btn3::before {
-    transform: scaleX(0);
-  }
-  .btn3:hover::before {
-    transform: scaleX(1);
-  }
+}
+
+.btnStyle {
+  /* if move to space between remove margin , color rgb(59, 59, 59)*/
+  background:rgb(101, 224, 221);
+  border: 3px solid rgb(88, 67,146);
+  font-family: 'Roboto', sans-serif;
+  text-transform: uppercase;
+  padding: 1vh;
+  /* to make larger btns */
+  min-width: 15vh;
+  margin: 1vh;
+  cursor: pointer;
+  /* color: white; */
+  border-radius: 4px;
+  transition: color 0.4s linear;
+  position: sticky;
+
+}
+
+/* rgb(101, 224, 221),  #000 */
+
+.btnStyle:hover {
+  color: #fff;
+  /* you can add image here with -content- */
+}
+
+.btnStyle::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgb(88, 67,146);
+  z-index: -1;
+  transition: transform 0.5s;
+  transform-origin: 0 0;
+  transition-timing-function: cubic-bezier(0.5, 1.6, 0.4, 0.7);
+
+}
+
+#gameHistory {
+
+  padding: 0 3vh 3vh;
+  margin: 0 3vh 3vh;
+  text-align: left;
+  font-size: 1.3em;
+  color: white;
+  /* background-image: url('./img/brick.png');
+  background-repeat: no-repeat;
+  height:50vh; */
+}
+
+.btn1::before {
+  transform: scaleY(0);
+}
+
+.btn2::before {
+  transform: scaleY(0);
+}
+
+.btn1:hover::before {
+  transform: scaleX(1);
+}
+
+.btn2:hover::before {
+  transform: scaleX(1);
+}
+
+.btn3::before {
+  transform: scaleX(0);
+}
+.btn3:hover::before {
+  transform: scaleX(1);
+}
