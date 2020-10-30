@@ -11,6 +11,7 @@ function update(){
   drawBox()
   line.draw()
   mint1.draw()
+  life1.draw()
   bounds()
   printScore()
   touchLine()
@@ -34,6 +35,7 @@ function resetGame(){
   mint1.y=550
   background.y=-1200
   line.y=513
+  life1.lifes=3
   console.log('reset game')
   startGame()
 
@@ -81,18 +83,15 @@ function clearBox() {
 
 
 function gameOver(){
-  // if(life1>0){ 
-  //   console.log('ya moriste')
+  if(life1.lifes<=0){ 
+    console.log('ya moriste')
   ctx.drawImage(gameOverImg, 00, 0, 600, 500)
   clearInterval(gameInterval)
   gameInterval = null
-  // }
+  }
   console.log('vida menos')
-
-  // life1.lifes--
-  // console.log(life1.lifes)
-  // ctx.fillStyle = "black"
-  // ctx.font = "500px Arial"
+  life1.lifes--
+  console.log(life1.lifes)
 }
 
 
@@ -109,30 +108,6 @@ function pauseGame() {
 }
 
 
-
-// let altura=0;
-//   function genBox() {
-//     if (frames % 100 == 0) {
-//       const min = 100
-//       const max = $canvas.width - 100
-//       let randomX = Math.floor(Math.random() * (max-min ))
-//       let box1=new Box(randomX,altura, 0) 
-//       boxies.push(box1)
-//       box1.grounded = false
-//       boxies.forEach(box => {
-//         var direction = collisionCheck(box1, box)
-//        if (direction == "bottom") {
-//             console.log('holiiiii')
-//             box1.velX = 0
-//             box1.velY=0
-//             altura +=60
-//             console.log(box.y)
-//         }
-//       })
-//     }
-//   }
-
-
 let altura=0;
 function genBox() {
   if (frames % 100 == 0) {
@@ -142,8 +117,14 @@ function genBox() {
   if(randomW<70){randomW=80}
   let randomH=randomW    
   let randomX = Math.floor(Math.random() * (maxX-minX))
-  let box1=new Box(randomX,altura,0,randomW,randomH ) 
+  let box1=new Box(randomX,altura,-30,randomW,randomH ) 
   boxies.push(box1)
+  // let arrowX= box1.x
+  // let arrow= new Arrow(arrowX) 
+  // console.log('afsfhgdsfasdgsfadf')
+  // console.log(arrowX)
+  // arrow.draw()
+
   boxies.forEach(obs => {
        if(box1.x < obs.x + obs.width &&
           box1.x + obs.width > obs.x){
@@ -175,10 +156,11 @@ function genBox() {
           mint1.jumping = false
           mint1.grounded = true
         } else if (direction == "top") {
-          pauseGame()
-          setTimeout(gameOver, 1500)
-          mint1.velY *= -1
+          // pauseGame()
+          if(frames%30==0){
+          gameOver()
         }
+      }
       })
     
       if (mint1.grounded) {
@@ -223,12 +205,11 @@ if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
 
 
 function touchLine(){
-  if (mint1.y+mint1.height>=line.y){
+  if (mint1.y+mint1.height-5>=line.y){
       console.log('linea rojaaaaaaaa')
       console.log(mint1.y)
       console.log(line.y)
-      pauseGame()
-      setTimeout(gameOver, 1500)
+      gameOver()
        return 
 
   }

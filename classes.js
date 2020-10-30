@@ -25,11 +25,6 @@ class Board {
         this.height = 4100 / 2
         this.img1 = new Image()
         this.img1.src = '/img/bck-wo-aliens.png'
-        // this.img2 = new Image()
-        // this.img2.src = '/img/space_background_for_infinite_scroll_example-300x300.png'
-        // this.img.onload = () => {
-        //     this.draw()
-        // }
         this.img1.onload = () => {
             this.draw()}
     }
@@ -77,10 +72,6 @@ class Mint{
     this.grounded = false
     this.img1 = new Image()
     this.img1.src = '/img/simsv.svg'
-    // this.imgLeft = new Image()
-    // this.imgLeft.src = '/img/izq.png'
-    // this.imgRight = new Image()
-    // this.imgRight.src = '/img/der.png'
         this.img1.onload = () => {
             this.draw()}
 
@@ -115,38 +106,43 @@ class Mint{
 }
 const mint1= new Mint(10,540)
 
-// class Lifies{
-//     constructor(lifes) {
-//         this.x = 30
-//         this.y = 50
-//         this.width =100
-//         this.height =50
-//         this.lifes=lifes
-//         this.lifeF = new Image()
-//         lifeF.src = '/img/ons-star.png'
-//         this.life2 = new Image()
-//         life2.src = "/img/two-stars.png"
-//         this.life3 = new Image()
-//         life3.src = "/img/ tres-estrellas.png"
-//         this.img1 = new Image()
-//         this.img1.src = '/img/simsv.svg'
-//      }
-//     draw(){
-//             ctx.drawImage(this.life3, this.x, this.y, this.width, this.height)
-//             console.log(this.lifes)
-//          if (this.lifes===2){
-//             ctx.drawImage(this.life2,this.x, this.y, this.width, this.height)
-//             console.log(this.lifes)
-//         }
-//         else if (this.lifes===1){
-//             ctx.drawImage(this.lifef, this.x, this.y, this.width, this.height)
-//             console.log(this.lifes)
-//         }
+class Lifies{
+    constructor(lifes) {
+        this.x = 20
+        this.y = 40
+        this.width =100
+        this.height =25
+        this.lifes=lifes
 
-//     }
-// }
+        this.lifeF = new Image()
+        this.lifeF.src = 'img/uno.svg'
+        this.life2 = new Image()
+        this.life2.src = 'img/dos.svg'
+        this.life3 = new Image()
+        this.life3.src = 'img/tres.svg'
+        this.img1 = new Image()
+        this.img1.src = '/img/simsv.svg'
+     }
+    
+     draw(){
 
-// const life1= new Lifies(3)
+        if (this.lifes===3){
+            ctx.drawImage(this.life3, this.x, this.y, this.width, this.height)
+            console.log(this.lifes)
+        }
+         if (this.lifes===2){
+            ctx.drawImage(this.life2,this.x, this.y, this.width, this.height)
+            console.log(this.lifes)
+        }
+        else if (this.lifes===1){
+            ctx.drawImage(this.lifeF, this.x, this.y, this.width, this.height)
+            console.log(this.lifes)
+        }
+
+    }
+}
+
+const life1= new Lifies(5)
 
 class Box{
     constructor(x, altura, y, width, height){
@@ -160,10 +156,6 @@ class Box{
     this.grounded = false
     this.img1 = new Image()
     this.img1.src = '/img/bloquealien.png'
-    this.img2 = new Image()
-    this.img2.src = '/img/game-over.png'
-
-
     }
     draw(){
         this.velY += gravity
@@ -173,7 +165,9 @@ class Box{
         ctx.drawImage(this.img1, this.x, this.y, this.width, this.height)
         
     }
+
     }
+
 
    
     class DeadLine {
@@ -181,20 +175,33 @@ class Box{
             this.x = 0
             this.y = $canvas.height+13; 
             this.width =$canvas.width
-            this.height =5
+            this.height =50
             this.velX = 0
             this.velY = 0
+            this.imgP= new Image()
+            this.imgP.src = '/img/picos.png' 
         }
         draw() {
             if(frames % 200==0){
                 this.y-=3
             }
-            ctx.fillRect(this.x, this.y, this.width, this.height)
-            ctx.fillStyle = "red"
+            ctx.drawImage(this.imgP, this.x, this.y, this.width, this.height)
+
         }
     }
 
     const line = new DeadLine()
 
-
-
+    // class Arrow{
+    //     constructor(x){
+    //     this.x=x
+    //     this.y=40
+    //     this.width=50
+    //     this.height=50
+    //     this.img4 = new Image()
+    //     this.img4.src = '/img/simple.png'
+    //     }
+    //     draw(){
+    //         ctx.drawImage(this.img4, this.x, this.y, this.width, this.height)
+    //     }
+    //     }
