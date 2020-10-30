@@ -35,8 +35,6 @@ function resetGame(){
   background.y=-1200
   line.y=513
   console.log('reset game')
-  mint1.x=5
-  mint1.y=550
   startGame()
 
 
@@ -195,7 +193,7 @@ var vectorY = char.y + char.height / 2 - (plat.y + plat.height / 2)
 
 var halfWidths = char.width / 2 + plat.width / 2
 var halfHeights = char.height / 2 + plat.height / 2
-var halfWidthstop = char.width  + plat.width
+
 var collisionDirection = null
 
 if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
