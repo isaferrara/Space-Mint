@@ -21,10 +21,10 @@ class Board {
     constructor(y) {
         this.x = 0
         this.y = y
-        this.width = 850 / 2
-        this.height = 4100 / 2
+        this.width = 850 
+        this.height = 4100 
         this.img1 = new Image()
-        this.img1.src = '/img/bck-wo-aliens.png'
+        this.img1.src = '/img/fondo-sun.png'
         this.img1.onload = () => {
             this.draw()}
     }
@@ -38,24 +38,24 @@ class Board {
             }
         // ctx.drawImage(this.img1, this.x, this.y, this.width, this.height)
         ctx.drawImage(this.img1, 0, this.y, $canvas.width, this.height)
-        if(background.y>0){
+        if(background.y>=0){
             winning()
         }
-        if(frames>=5000&&frames<=5100){
-            ctx.font = "20px Sans-serif"
-            ctx.fillStyle = "black"
-            ctx.fillText('Level 2: sky', $canvas.width/2 - 100, $canvas.height/2 )
+        if(frames>=5400&&frames<=5800){
+            ctx.font = "60px Sans-serif"
+            ctx.fillStyle = "white"
+            ctx.fillText('Level 2: sky', $canvas.width/2+ - 120, $canvas.height/2 )
         }
-        if(frames>=10000&&frames<=10100){
-            ctx.font = "20px Sans-serif"
-            ctx.fillStyle = "black"
-            ctx.fillText('Level 3: sky', $canvas.width/2 - 100, $canvas.height/2 )
+        if(frames>=10400&&frames<=10700){
+            ctx.font = "60px Sans-serif"
+            ctx.fillStyle = "white"
+            ctx.fillText('Level 3: space', $canvas.width/2 - 120, $canvas.height/2 )
         }
     }
 
 
 }
-const background = new Board(-1200)
+const background = new Board(-3550)
 
 
 class Mint{

@@ -11,6 +11,9 @@
     if (keys["ArrowRight"]) {
       mint1.velX++
     }
+    if (keys["Enter"]) {
+      resetGame()
+    }
   }
   
   document.onkeydown = e => {

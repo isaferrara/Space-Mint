@@ -21,6 +21,7 @@ function update(){
 function startGame(){
   if(gameInterval)return
   gameInterval=setInterval(update,10)
+  life1.lifes=3 
 }
 
 function resetGame(){
@@ -33,7 +34,7 @@ function resetGame(){
   score=0;
   mint1.x=5
   mint1.y=550
-  background.y=-1200
+  background.y=-3600
   line.y=513
   life1.lifes=3
   console.log('reset game')
@@ -46,20 +47,20 @@ function printScore() {
   ctx.font = "20px Sans-serif"
   ctx.fillStyle = "black"
   ctx.fillText(`Score: ${score}`, $canvas.width - 100, 30)
-  if(frames<=5000) {
+  if(frames<=5400) {
       ctx.font = "20px Sans-serif"
       ctx.fillStyle = "black"
       ctx.fillText('Level 1: earth', 10, 30 )
   }
-  if(frames>=5000&& frames<=10000) {
+  if(frames>=5400&& frames<=10400) {
       ctx.font = "20px Sans-serif"
       ctx.fillStyle = "black"
       ctx.fillText('Level 2: sky', 10, 30 )
   }
-  if(frames>=10000&& frames<=15000) {
+  if(frames>=10400& frames<=25000) {
       ctx.font = "20px Sans-serif"
       ctx.fillStyle = "black"
-      ctx.fillText('Level 2: sky', 10, 30 )
+      ctx.fillText('Level 3: space', 10, 30 )
   }
 }
 
@@ -96,10 +97,13 @@ function gameOver(){
 
 
 function winning(){
-      ctx.drawImage(youWon, 00, 0, 600, 500)
+      ctx.drawImage(youWon, 0, 0, 600, 500)
       clearInterval(gameInterval)
+      line.y=513
+      boxies=[]
+      mint1.y=700
       gameInterval = null
-
+      console.log('estas ganandoooooooo')
 }
 
 function pauseGame() {
@@ -119,11 +123,6 @@ function genBox() {
   let randomX = Math.floor(Math.random() * (maxX-minX))
   let box1=new Box(randomX,altura,-30,randomW,randomH ) 
   boxies.push(box1)
-  // let arrowX= box1.x
-  // let arrow= new Arrow(arrowX) 
-  // console.log('afsfhgdsfasdgsfadf')
-  // console.log(arrowX)
-  // arrow.draw()
 
   boxies.forEach(obs => {
        if(box1.x < obs.x + obs.width &&
@@ -157,7 +156,7 @@ function genBox() {
           mint1.grounded = true
         } else if (direction == "top") {
           // pauseGame()
-          if(frames%30==0){
+          if(frames%6==0){
           gameOver()
         }
       }
