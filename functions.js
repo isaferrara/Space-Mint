@@ -1,6 +1,5 @@
 function update(){
   frames++
-  console.log(frames)
   clearBox()
   checkKeys()
   mint1.changePos() 
@@ -37,7 +36,6 @@ function resetGame(){
   background.y=-3600
   line.y=513
   life1.lifes=3
-  console.log('reset game')
   startGame()
 
 
@@ -85,14 +83,11 @@ function clearBox() {
 
 function gameOver(){
   if(life1.lifes<=0){ 
-    console.log('ya moriste')
   ctx.drawImage(gameOverImg, 00, 0, 600, 500)
   clearInterval(gameInterval)
   gameInterval = null
   }
-  console.log('vida menos')
   life1.lifes--
-  console.log(life1.lifes)
 }
 
 
@@ -103,7 +98,7 @@ function winning(){
       boxies=[]
       mint1.y=700
       gameInterval = null
-      console.log('estas ganandoooooooo')
+  
 }
 
 function pauseGame() {
@@ -205,9 +200,6 @@ if (Math.abs(vectorX) < halfWidths && Math.abs(vectorY) < halfHeights) {
 
 function touchLine(){
   if (mint1.y+mint1.height-5>=line.y){
-      console.log('linea rojaaaaaaaa')
-      console.log(mint1.y)
-      console.log(line.y)
       gameOver()
        return 
 

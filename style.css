@@ -32,9 +32,6 @@ h1 {
 
 #gamePres {
   margin: 1vh;
-  /* background-image: url("./img/spacemitnbackgroundlow.png");
-  width: 1440px;
-  height: 900px; */
 }
 
 .gameArena {
@@ -100,9 +97,6 @@ h1 {
     text-align: left;
     font-size: 1.3em;
     color: rgb(55, 71,78);
-    /* background-image: url('./img/brick.png');
-    background-repeat: no-repeat;
-    height:50vh; */
     
   }
 }

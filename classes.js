@@ -36,7 +36,6 @@ class Board {
             } else if (mint1.jumping && this.y == 0) {
                 this.y == 0
             }
-        // ctx.drawImage(this.img1, this.x, this.y, this.width, this.height)
         ctx.drawImage(this.img1, 0, this.y, $canvas.width, this.height)
         if(background.y>=0){
             winning()
@@ -128,15 +127,15 @@ class Lifies{
 
         if (this.lifes===3){
             ctx.drawImage(this.life3, this.x, this.y, this.width, this.height)
-            console.log(this.lifes)
+            
         }
          if (this.lifes===2){
             ctx.drawImage(this.life2,this.x, this.y, this.width, this.height)
-            console.log(this.lifes)
+            
         }
         else if (this.lifes===1){
             ctx.drawImage(this.lifeF, this.x, this.y, this.width, this.height)
-            console.log(this.lifes)
+            
         }
 
     }
@@ -191,17 +190,3 @@ class Box{
     }
 
     const line = new DeadLine()
-
-    // class Arrow{
-    //     constructor(x){
-    //     this.x=x
-    //     this.y=40
-    //     this.width=50
-    //     this.height=50
-    //     this.img4 = new Image()
-    //     this.img4.src = '/img/simple.png'
-    //     }
-    //     draw(){
-    //         ctx.drawImage(this.img4, this.x, this.y, this.width, this.height)
-    //     }
-    //     }
