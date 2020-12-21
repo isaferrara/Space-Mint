@@ -1,7 +1,7 @@
 # Space-Mint
 <b> Winner of Ironhack 2020's best game</b>
 
-Space Mint is a game created in a period of 4 days in order to demonstarte my experience anf practical knowledge in basic Java Script, CSS and HtML. 
+Space Mint is a game created in a period of 4 days in order to demonstarte my experience and practical knowledge in basic Java Script, CSS and HtML. 
 My main goal was to create an experience that allows the user to play a fun, addictive and challenging, yet simple game that is memorable. Space Mint
 presents a simple interface with colorful and appealing characters.
 
