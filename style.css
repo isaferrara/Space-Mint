@@ -224,10 +224,10 @@ h1 {
 #gameHistory {
 
   padding: 0 3vh 3vh;
-  margin: 0 3vh 3vh;
+  margin: 20px 3vh 3vh;
   text-align: left;
   font-size: 1.3em;
-  color: white;
+  color: rgb(55, 71,78);
   /* background-image: url('./img/brick.png');
   background-repeat: no-repeat;
   height:50vh; */
